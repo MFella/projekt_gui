@@ -1,40 +1,57 @@
+import { Menu } from 'evergreen-ui';
 import React from 'react';
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { Link, Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes, BrowserRouter as Router, Link } from 'react-router-dom';
+import { default as Btn } from '../wrappers/Btn';
+import { default as BtnLink} from '../wrappers/BtnLink';
 import Home from './Home';
 import Panel from './Panel';
+import Auth from './Auth';
 
-export const Navigation: any = () => {
+export class Navigation extends React.Component<{}, {}> {
+    render() {
+        const css = `
+        .Navbar {
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+            justify-content: center;
+            height: 3rem;
+            border-bottom: 1px solid rgba(0,0,0,.2);
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+
+        .menu-group-container {
+            max-height: 3rem;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        Menu.Group {
+            width: 100%;
+        }
+
+        .root-container {
+            padding-top: 2rem;
+        }
+        `;
+
     return (
         <Router>
+            <style>
+                {css}
+            </style>
         <div className='Navbar'>
-                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Container>
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                    <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
-                    <Nav.Link as={Link} to={"/panel"}>Panel</Nav.Link>
-                    <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
-                    </Nav>
-                    <Nav>
-                    <Nav.Link href="#deets">More deets</Nav.Link>
-                    <Nav.Link eventKey={2} href="#memes">
-                        Dank memes
-                    </Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-                </Container>
-                </Navbar>
+            <div className="menu-group-container">
+                <BtnLink data={{label: 'Home', size: 'small', apperance: 'minimal', link: '/'}}/>
+                <BtnLink data={{label: 'Panel', size: 'medium', apperance: 'default', link: '/panel'}}/>
+                <BtnLink data={{label: 'Auth', size: 'large', apperance: 'primary', link: '/auth'}}/>
+            </div>
         </div>
-        <div>
+        <div className="root-container">
             <Routes>
                 <Route path="/" element={<Home/>}>
                     <Home />
@@ -42,9 +59,13 @@ export const Navigation: any = () => {
                 <Route path="/panel" element={<Panel/>}>
                     <Panel />
                 </Route>
+                <Route path="/auth" element={<Auth/>}>
+                    <Auth />
+                </Route>
             </Routes>
         </div>
       </Router>
     )
+    }
 }
 export default Navigation;
