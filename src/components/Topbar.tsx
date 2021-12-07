@@ -15,7 +15,7 @@ import { Classes, Popover2 } from "@blueprintjs/popover2";
 import { useTheme } from "../ThemeContext";
 import { useTranslation } from "react-i18next";
 
-const Navigation = () => {
+const Topbar = () => {
   const { theme, setTheme } = useTheme();
   const { t, i18n } = useTranslation();
   const changeColorTheme = () => {
@@ -27,6 +27,32 @@ const Navigation = () => {
   const getLanguage = () => {
     return i18n.language;
   };
+
+  const settingsContent = (
+    <div>
+      <Menu>
+        <Switch
+          checked={theme === "dark"}
+          label="Tryb ciemny"
+          onChange={changeColorTheme}
+        />
+        <MenuItem text="Zmień język">
+          <MenuItem
+            icon={getLanguage() === "pl" ? "small-tick" : false}
+            text="Polski"
+            onClick={() => changeLanguageHandler("pl")}
+          />
+          <MenuItem
+            icon={getLanguage() === "en" ? "small-tick" : false}
+            text="Angielski"
+            onClick={() => changeLanguageHandler("en")}
+          />
+        </MenuItem>
+        <MenuDivider />
+        <Button text="Wyloguj" fill={true} minimal={true} />
+      </Menu>
+    </div>
+  );
 
   return (
     <Navbar className={styles.navbarStyle}>
@@ -42,31 +68,7 @@ const Navigation = () => {
           interactionKind="hover"
           popoverClassName={Classes.POPOVER2_CONTENT_SIZING}
           placement="bottom-start"
-          content={
-            <div>
-              <Menu>
-                <Switch
-                  checked={theme === "dark"}
-                  label="Tryb ciemny"
-                  onChange={changeColorTheme}
-                />
-                <MenuItem text="Zmień język">
-                  <MenuItem
-                    icon={getLanguage() === "pl" ? "small-tick" : false}
-                    text="Polski"
-                    onClick={(e) => changeLanguageHandler("pl")}
-                  />
-                  <MenuItem
-                    icon={getLanguage() === "en" ? "small-tick" : false}
-                    text="Angielski"
-                    onClick={(e) => changeLanguageHandler("en")}
-                  />
-                </MenuItem>
-                <MenuDivider />
-                <Button text="Wyloguj" fill={true} minimal={true} />
-              </Menu>
-            </div>
-          }
+          content={settingsContent}
           renderTarget={({ isOpen, ref, ...targetProps }) => (
             <Button
               {...targetProps}
@@ -82,4 +84,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default Topbar;

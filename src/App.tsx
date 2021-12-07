@@ -1,10 +1,10 @@
 import React from "react";
-import Navigation from "./components/Navigation";
+import Topbar from "./components/Topbar";
 
 function App() {
   return (
     <div className="App">
-      <Navigation />
+      <Topbar />
     </div>
   );
 }
