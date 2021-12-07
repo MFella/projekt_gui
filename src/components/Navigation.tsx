@@ -1,17 +1,82 @@
 import { Alignment } from "@blueprintjs/core/lib/esm/common";
-import { Button, Navbar } from "@blueprintjs/core/lib/esm/components";
-import { Select } from "@blueprintjs/select";
+import {
+  Button,
+  Icon,
+  Menu,
+  MenuDivider,
+  MenuItem,
+  Navbar,
+  Switch
+} from "@blueprintjs/core/lib/esm/components";
+import AccountSelect from "./AccountSelect";
+import styles from "./component.module.css";
 import React from "react";
+import { Classes, Popover2 } from "@blueprintjs/popover2";
+import { useTheme } from "../ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const Navigation = () => {
+  const { theme, setTheme } = useTheme();
+  const { t, i18n } = useTranslation();
+  const changeColorTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+  const changeLanguageHandler = (lang: string) => {
+    i18n.changeLanguage(lang);
+  };
+  const getLanguage = () => {
+    return i18n.language;
+  };
+
   return (
-    <Navbar>
+    <Navbar className={styles.navbarStyle}>
       <Navbar.Group align={Alignment.LEFT}>
-        <Navbar.Heading>Panel sprzedawcy</Navbar.Heading>
+        <Navbar.Heading className={styles.colorWhite}>
+          {t("title")}
+        </Navbar.Heading>
       </Navbar.Group>
       <Navbar.Group align={Alignment.RIGHT}>
-        <Navbar.Divider />
-        <Button className="bp3-minimal" icon="cog" />
+        <AccountSelect />
+        <Navbar.Divider className={styles.backgroundColorWhite} />
+        <Popover2
+          interactionKind="hover"
+          popoverClassName={Classes.POPOVER2_CONTENT_SIZING}
+          placement="bottom-start"
+          content={
+            <div>
+              <Menu>
+                <Switch
+                  checked={theme === "dark"}
+                  label="Tryb ciemny"
+                  onChange={changeColorTheme}
+                />
+                <MenuItem text="Zmień język">
+                  <MenuItem
+                    icon={getLanguage() === "pl" ? "small-tick" : false}
+                    text="Polski"
+                    onClick={(e) => changeLanguageHandler("pl")}
+                  />
+                  <MenuItem
+                    icon={getLanguage() === "en" ? "small-tick" : false}
+                    text="Angielski"
+                    onClick={(e) => changeLanguageHandler("en")}
+                  />
+                </MenuItem>
+                <MenuDivider />
+                <Button text="Wyloguj" fill={true} minimal={true} />
+              </Menu>
+            </div>
+          }
+          renderTarget={({ isOpen, ref, ...targetProps }) => (
+            <Button
+              {...targetProps}
+              elementRef={ref as React.RefObject<HTMLButtonElement>}
+              className="bp3-minimal"
+            >
+              <Icon className={styles.colorWhite} icon="cog" />
+            </Button>
+          )}
+        />
       </Navbar.Group>
     </Navbar>
   );
