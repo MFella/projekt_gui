@@ -3,11 +3,13 @@ import React, { createContext, useEffect, useState } from "react";
 const themeColours = {
   light: {
     textColor: "#182026",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    backgroundCard: "#EBF1F5"
   },
   dark: {
     textColor: "#ffffff",
-    backgroundColor: "#182026"
+    backgroundColor: "#182026",
+    backgroundCard: "#394B59"
   }
 };
 
@@ -32,6 +34,10 @@ export const ThemeProvider = ({ children }: Props) => {
     document.body.style.setProperty(
       "--background-color",
       themeColours[name].backgroundColor
+    );
+    document.body.style.setProperty(
+      "--background-card",
+      themeColours[name].backgroundCard
     );
     setThemeName(name);
   };

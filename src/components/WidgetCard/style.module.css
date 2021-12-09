@@ -1,0 +1,16 @@
+.title {
+  margin-top: 0px;
+  color: var(--text-color) !important;
+}
+
+.container {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.card {
+  min-height: 400px;
+  max-height: 400px;
+  background-color: var(--background-card) !important;
+  text-align: left;
+}
