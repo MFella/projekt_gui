@@ -1,6 +1,7 @@
 .title {
   margin-top: 0px;
   color: var(--text-color) !important;
+  transition: color 500ms linear;
 }
 
 .container {
@@ -12,5 +13,6 @@
   min-height: 400px;
   max-height: 400px;
   background-color: var(--background-card) !important;
+  transition: background-color 500ms linear;
   text-align: left;
 }

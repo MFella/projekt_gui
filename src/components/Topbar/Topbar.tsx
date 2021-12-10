@@ -58,7 +58,7 @@ const Topbar = () => {
     <Navbar className={styles.navbarStyle}>
       <Navbar.Group align={Alignment.LEFT}>
         <Navbar.Heading className={styles.colorWhite}>
-          {t("title")}
+          {t("topbar.title")}
         </Navbar.Heading>
       </Navbar.Group>
       <Navbar.Group align={Alignment.RIGHT}>
