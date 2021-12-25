@@ -19,6 +19,7 @@ type ThemeContextType = {
   theme: ThemeName;
   setTheme: (name: ThemeName) => void;
 };
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const ThemeContext = createContext<ThemeContextType>(undefined!);
 
 type Props = {

@@ -5,7 +5,6 @@ import QualityWidget from "./widgets/Quality/QualityWidget";
 import ChartWidget from "./widgets/Chart/ChartWidget";
 
 const App = () => {
-  useEffect(() => {}, []);
 
   return (
     <div className="App">

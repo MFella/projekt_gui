@@ -69,7 +69,7 @@ const Topbar = () => {
           popoverClassName={Classes.POPOVER2_CONTENT_SIZING}
           placement="bottom-start"
           content={settingsContent}
-          renderTarget={({ isOpen, ref, ...targetProps }) => (
+          renderTarget={({ ref, ...targetProps }) => (
             <Button
               {...targetProps}
               elementRef={ref as React.RefObject<HTMLButtonElement>}
