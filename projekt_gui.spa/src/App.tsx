@@ -1,17 +1,20 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './logo.svg';
-import './App.css';
-import {Navigation} from './components/Navigation';
-import { BrowserRouter } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+import React, { useEffect } from "react";
+import Topbar from "./components/Topbar/Topbar";
+import OrdersWidget from "./widgets/Orders/OrdersWidget";
+import QualityWidget from "./widgets/Quality/QualityWidget";
+import ChartWidget from "./widgets/Chart/ChartWidget";
 
-function App() {
+const App = () => {
+  useEffect(() => {}, []);
+
   return (
     <div className="App">
-      <Navigation />
+      <Topbar />
+      <OrdersWidget />
+      <QualityWidget />
+      <ChartWidget />
     </div>
   );
-}
+};
 
 export default App;
