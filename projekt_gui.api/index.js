@@ -16,10 +16,10 @@ app.use(express.json());
 
 
 // later -> Passport
-// app.listenerCount(passport.initialize());
-// app.listenerCount(passport.session())
+app.listenerCount(passport.initialize());
+app.listenerCount(passport.session())
 
-// app.use(routes);
+app.use(routes);
 
 app.listen(config.port, () => {
     console.log('Server started. Listen on port ' + config.port);

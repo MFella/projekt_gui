@@ -1,19 +1,26 @@
-import React, { useEffect } from "react";
-import Topbar from "./components/Topbar/Topbar";
-import OrdersWidget from "./widgets/Orders/OrdersWidget";
-import QualityWidget from "./widgets/Quality/QualityWidget";
-import ChartWidget from "./widgets/Chart/ChartWidget";
+import React from "react";
+import LoginScreen from "./screens/Login/LoginScreen";
+import {useTheme} from "./ThemeContext";
+import {Navigate, Route, Routes} from "react-router-dom";
+import DashboardScreen from "./screens/Dashboard/DashboardScreen";
+import AuthService from "./service/AuthService";
 
 const App = () => {
+    const {theme} = useTheme();
 
-  return (
-    <div className="App">
-      <Topbar />
-      <OrdersWidget />
-      <QualityWidget />
-      <ChartWidget />
-    </div>
-  );
+    return (
+        <div className={["App", theme == "dark" ? "bp3-dark" : ""].join(" ")}>
+            <Routes>
+                <Route
+                    path="/"
+                    element={AuthService.isUserAuthenticated() ? <DashboardScreen/> :
+                        <Navigate to={{pathname: "/login"}}/>}
+                />
+                <Route path="/login" element={<LoginScreen/>}/>
+                <Route path="*" element={<Navigate to={{pathname: "/"}}/>}/>
+            </Routes>
+        </div>
+    );
 };
 
 export default App;

@@ -1,4 +1,6 @@
 .navbarStyle {
+  position: absolute !important;
+  margin-top: 0;
   background-color: #137cbd !important;
 }
 

@@ -1,11 +1,22 @@
 :root {
   --background-color: #fff;
   --text-color: #fff;
+  --background-card: #EBF1F5;
 }
 
+html,
 body {
+  height: 100%;
+  margin: 0;
   font-family: sans-serif;
-  text-align: center;
   background-color: var(--background-color);
   transition: background-color 500ms linear;
+}
+
+.App {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
 }

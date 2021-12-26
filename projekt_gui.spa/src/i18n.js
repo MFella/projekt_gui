@@ -13,7 +13,7 @@ i18n
       useSuspense: false
     },
     fallbackLng: "pl",
-    debug: true,
+    debug: false,
 
     interpolation: {
       escapeValue: false
