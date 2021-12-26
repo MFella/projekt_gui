@@ -2,18 +2,24 @@ import {Alignment} from "@blueprintjs/core/lib/esm/common";
 import {Button, Icon, Menu, MenuDivider, MenuItem, Navbar, Switch} from "@blueprintjs/core/lib/esm/components";
 import AccountSelect from "../AccountSelect/AccountSelect";
 import styles from "./style.module.css";
-import React from "react";
+import React, {useState} from "react";
 import {Classes, Popover2} from "@blueprintjs/popover2";
 import {useTheme} from "../../ThemeContext";
 import {useTranslation} from "react-i18next";
+import AuthService from "../../service/AuthService";
+import {useNavigate} from "react-router-dom";
 
 export interface TopbarProps {
     isAuthorized: boolean;
+    onUserChange?: (user: string) => void;
 }
 
 const Topbar = (props: TopbarProps) => {
     const {theme, setTheme} = useTheme();
     const {t, i18n} = useTranslation();
+    const navigate = useNavigate();
+    const [user, setUser] = useState(props.isAuthorized ? AuthService.getCurrentUser() : "");
+    const [userList, setUserList] = useState(props.isAuthorized ? AuthService.getUsersList() : []);
     const changeColorTheme = () => {
         setTheme(theme === "dark" ? "light" : "dark");
     };
@@ -23,6 +29,18 @@ const Topbar = (props: TopbarProps) => {
     const getLanguage = () => {
         return i18n.language;
     };
+
+    const userChanged = (s: string) => {
+        AuthService.saveUser(s);
+        if (props.onUserChange) {
+            props.onUserChange(s);
+        }
+    }
+
+    const logout = () => {
+        AuthService.deleteSession();
+        navigate("/login");
+    }
 
     const settingsContent = (
         <div>
@@ -46,7 +64,7 @@ const Topbar = (props: TopbarProps) => {
                 </MenuItem>
                 {props.isAuthorized && <>
                     <MenuDivider/>
-                    <Button text="Wyloguj" fill={true} minimal={true}/>
+                    <Button text="Wyloguj" fill={true} minimal={true} onClick={logout}/>
                 </>}
             </Menu>
         </div>
@@ -60,7 +78,7 @@ const Topbar = (props: TopbarProps) => {
                 </Navbar.Heading>
             </Navbar.Group>
             <Navbar.Group align={Alignment.RIGHT}>
-                {props.isAuthorized && <AccountSelect/>}
+                {props.isAuthorized && <AccountSelect current={user} list={userList} onChange={userChanged}/>}
                 <Navbar.Divider className={styles.backgroundColorWhite}/>
                 <Popover2
                     interactionKind="hover"

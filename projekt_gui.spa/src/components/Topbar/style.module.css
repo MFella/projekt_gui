@@ -1,17 +1,17 @@
 .navbarStyle {
-  position: absolute !important;
-  margin-top: 0;
-  background-color: #137cbd !important;
+    position: sticky !important;
+    top: 0;
+    background-color: #137cbd !important;
 }
 
 .textColor {
-  color: var(--text-color);
+    color: var(--text-color);
 }
 
 .colorWhite {
-  color: #ffffff !important;
+    color: #ffffff !important;
 }
 
 .backgroundColorWhite {
-  background-color: #ffffff !important;
+    background-color: #ffffff !important;
 }

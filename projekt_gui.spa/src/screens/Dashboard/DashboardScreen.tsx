@@ -1,9 +1,32 @@
 import React, {useState} from "react";
-import {H2} from "@blueprintjs/core";
+import Topbar from "../../components/Topbar/Topbar";
+import OrdersWidget from "../../widgets/Orders/OrdersWidget";
+import QualityWidget from "../../widgets/Quality/QualityWidget";
+import ChartWidget from "../../widgets/Chart/ChartWidget";
+import styles from "./style.module.css";
+import {CachePolicies, useFetch} from "use-http";
+import AuthService from "../../service/AuthService";
+import {API_URL} from "../../App";
 
 const DashboardScreen = () => {
+    const [currenUser, setCurrentUser] = useState(AuthService.getCurrentUser())
+    const ordersFetch = useFetch(API_URL + '/orders/' + currenUser, {cachePolicy: CachePolicies.NO_CACHE}, [currenUser])
 
-    return(<H2>TEST</H2>);
+    return (
+        <>
+            <Topbar isAuthorized={true} onUserChange={(user) => setCurrentUser(user)}/>
+            <div className={styles.container}>
+                <OrdersWidget
+                    currentUser={currenUser}
+                    isLoading={ordersFetch.loading}
+                    data={ordersFetch.data}
+                />
+                <QualityWidget/>
+                <ChartWidget/>
+            </div>
+
+        </>
+    );
 }
 
 export default DashboardScreen;

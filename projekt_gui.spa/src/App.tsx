@@ -5,6 +5,8 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import DashboardScreen from "./screens/Dashboard/DashboardScreen";
 import AuthService from "./service/AuthService";
 
+export const API_URL = "http://localhost:3100";
+
 const App = () => {
     const {theme} = useTheme();
 
@@ -24,3 +26,4 @@ const App = () => {
 };
 
 export default App;
+

@@ -14,11 +14,12 @@ const getToken = () => {
     return localStorage.getItem("token");
 };
 
-const getCurrentUser = () => {
+const getCurrentUser = (): string => {
     if (localStorage.getItem("token")) {
-        return localStorage.getItem("user");
+        const user = localStorage.getItem("user")
+        return user ? user : "";
     }
-    return undefined;
+    return "";
 };
 
 const getUsersList = () => {
