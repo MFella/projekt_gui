@@ -1,9 +1,8 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Dialog} from "@blueprintjs/core/lib/esnext";
-import {AnchorButton, Card, Classes, H2, H4, Label, Spinner} from "@blueprintjs/core";
+import {AnchorButton, Card, Classes, H4, Label, Spinner} from "@blueprintjs/core";
 import {useTheme} from "../../ThemeContext";
 import {CachePolicies, useFetch} from "use-http";
-import styles from "./style.module.css";
 
 
 export interface OrderDetailsProps {
@@ -14,12 +13,24 @@ export interface OrderDetailsProps {
 const OrdersDetails = (props: OrderDetailsProps) => {
     const {theme} = useTheme();
     const [isOpen, setIsOpen] = useState(false);
+    const [data, setData] = useState([]);
     const handleButtonClick = useCallback(() => setIsOpen(!isOpen), []);
     const handleClose = useCallback(() => setIsOpen(false), []);
     const {
-        data,
+        get,
+        response,
         loading
-    } = useFetch('/orders/details/' + props.link, {cachePolicy: CachePolicies.NO_CACHE}, [isOpen])
+    } = useFetch('/orders/details/' + props.link, {cachePolicy: CachePolicies.NO_CACHE}, [])
+
+    useEffect(() => {
+        if (isOpen) load()
+    }, [isOpen])
+
+    async function load() {
+        const initialTodos = await get('')
+        if (response.ok) setData(initialTodos)
+    }
+
     return (
         <>
             <AnchorButton
