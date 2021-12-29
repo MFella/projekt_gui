@@ -1,0 +1,18 @@
+.title {
+    margin-top: 0;
+    transition: color 500ms linear;
+}
+
+.container {
+    margin: 40px auto 0 auto;
+    max-width: 800px;
+}
+
+.card {
+    min-height: 300px;
+    background-color: var(--background-card) !important;
+    transition: background-color 500ms linear;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
