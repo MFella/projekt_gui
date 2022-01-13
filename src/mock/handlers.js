@@ -69,4 +69,49 @@ export const handlers = [
         },]
         return res(ctx.json(resp));
 
-    })]
+    }),
+    
+    rest.get('/orders/chart/today', (req, res, ctx) => {
+        sleep(1000);
+        const resp = [
+            {
+                id: 0
+            },
+            {
+                id: 1
+            },
+            {
+                id: 2
+            },
+            {
+                id: 3
+            },
+            {
+                id: 4
+            },
+            {
+                id: 5
+            },
+        ];
+        return res(ctx.json(resp));
+    }),
+
+    rest.get('/quality/', (req, res, ctx) => {
+        sleep(1000);
+        const resp = {
+            category: 'Average',
+            lowestAspects: {
+                service: 43,
+                deliveryCost: 56,
+                timeOfDelivery: 65
+            },
+            overallRatio: {
+                rate: 76,
+                leftToNext: 4,
+                nextCategory: 'Good'
+            }
+        };
+        return res(ctx.json(resp));
+    })
+
+]
