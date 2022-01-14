@@ -47,7 +47,6 @@ const ChartWidget = (props: ChartWidgetProps) => {
             return entity.metric === metric.heading
         });
 
-        // hardcoded ;/
         const singleSerie = [{
             name: range.heading,
             data: [...(dataToDisplay[range.value].serie_1).map((measure: IOption) => measure.value)]

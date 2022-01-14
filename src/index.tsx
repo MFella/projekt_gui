@@ -15,12 +15,11 @@ import {worker} from "./mock/browser";
 
 worker.start()
 ReactDOM.render(
-    <React.StrictMode>
         <ThemeProvider>
             <BrowserRouter>
                 <App/>
             </BrowserRouter>
         </ThemeProvider>
-    </React.StrictMode>,
+ ,
     document.getElementById("root")
 );
