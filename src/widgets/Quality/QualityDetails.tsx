@@ -78,7 +78,7 @@ const QualityDetails = (props: QualityDetailData) => {
                     <h2>{props.overallRatio?.rate}</h2>
                     <p>{t("widget.quality.pointsleft")}<strong>{props.overallRatio?.leftToNext}</strong>{t("widget.quality.left")}</p>
                     {props.category &&
-                        <Tag round={true} large={false} minimal={true}>
+                        <Tag round={true} large={true} minimal={true}>
                             {t(getNextTag(tagsData, props.category).toString())}
                         </Tag>
                     }
