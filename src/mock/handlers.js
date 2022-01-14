@@ -7,6 +7,7 @@ function sleep(milliseconds) {
         currentDate = Date.now();
     } while (currentDate - date < milliseconds);
 }
+
 export const handlers = [
     rest.post('/login', (req, res, ctx) => {
         sleep(400);
@@ -70,7 +71,7 @@ export const handlers = [
         return res(ctx.json(resp));
 
     }),
-    
+
     rest.get('/orders/chart/', (req, res, ctx) => {
         sleep(400);
         const resp = [
@@ -194,249 +195,249 @@ export const handlers = [
             },
             {
                 metric: 'Selt items',
-                serie_1: [                
-                {
-                    period: 'Monday',
-                    value: 4001
-                },
-                {
-                    period: 'Tuesday',
-                    value: 928
-                },
-                {
-                    period: 'Wednesday',
-                    value: 3251
-                },
-                {
-                    period: 'Thursday',
-                    value: 1231
-                },
-                {
-                    period: 'Friday',
-                    value: 6343
-                },
-                {
-                    period: 'Saturday',
-                    value: 643
-                },
-                {
-                    period: 'Sunday',
-                    value: 325
-                }
-            ],
-            serie_2: [
-                {
-                    period: 'Monday',
-                    value: 2314
-                },
-                {
-                    period: 'Tuesday',
-                    value: 1673
-                },
-                {
-                    period: 'Wednesday',
-                    value: 142
-                },
-                {
-                    period: 'Thursday',
-                    value: 3232
-                },
-                {
-                    period: 'Friday',
-                    value: 744
-                },
-                {
-                    period: 'Saturday',
-                    value: 1552
-                },
-                {
-                    period: 'Sunday',
-                    value: 124
-                },
-            ]
-        },
-        {
-            metric: 'Turnover',
-            serie_1: [
-                {
-                    period: '0:00 - 4:00',
-                    value: 34
-                },
-                {
-                    period: '4:00 - 8:00',
-                    value: 53
-                },
-                {
-                    period: '8:00 - 12:00',
-                    value: 86
-                },
-                {
-                    period: '12:00 - 16:00',
-                    value: 102
-                },
-                {
-                    period: '16:00 - 20:00',
-                    value: 32
-                },
-                {
-                    period: '20:00 - 24:00',
-                    value: 12
-                },
-            ],
-            serie_2: [
-                {
-                    period: '0:00 - 4:00',
-                    value: 65
-                },
-                {
-                    period: '4:00 - 8:00',
-                    value: 54
-                },
-                {
-                    period: '8:00 - 12:00',
-                    value: 32
-                },
-                {
-                    period: '12:00 - 16:00',
-                    value: 75
-                },
-                {
-                    period: '16:00 - 20:00',
-                    value: 92
-                },
-                {
-                    period: '20:00 - 24:00',
-                    value: 73
-                },
-            ]
-        },
-        {
-            metric: 'Turnover',
-            serie_1: [
-                {
-                    period: 'Monday',
-                    value: 5432
-                },
-                {
-                    period: 'Tuesday',
-                    value: 2351
-                },
-                {
-                    period: 'Wednesday',
-                    value: 9201
-                },
-                {
-                    period: 'Thursday',
-                    value: 5893
-                },
-                {
-                    period: 'Friday',
-                    value: 4631
-                },
-                {
-                    period: 'Saturday',
-                    value: 6832
-                },
-                {
-                    period: 'Sunday',
-                    value: 9001
-                },
-            ],
-            serie_2: [
-                {
-                    period: 'Monday',
-                    value: 4352
-                },
-                {
-                    period: 'Tuesday',
-                    value: 1235
-                },
-                {
-                    period: 'Wednesday',
-                    value: 6234
-                },
-                {
-                    period: 'Thursday',
-                    value: 6351
-                },
-                {
-                    period: 'Friday',
-                    value: 4911
-                },
-                {
-                    period: 'Saturday',
-                    value: 5671
-                },
-                {
-                    period: 'Sunday',
-                    value: 2222
-                },
-            ]
-        },
-        {
-            metric: 'Turnover',
-            serie_1: [                
-            {
-                period: 'Monday',
-                value: 3921
+                serie_1: [
+                    {
+                        period: 'Monday',
+                        value: 4001
+                    },
+                    {
+                        period: 'Tuesday',
+                        value: 928
+                    },
+                    {
+                        period: 'Wednesday',
+                        value: 3251
+                    },
+                    {
+                        period: 'Thursday',
+                        value: 1231
+                    },
+                    {
+                        period: 'Friday',
+                        value: 6343
+                    },
+                    {
+                        period: 'Saturday',
+                        value: 643
+                    },
+                    {
+                        period: 'Sunday',
+                        value: 325
+                    }
+                ],
+                serie_2: [
+                    {
+                        period: 'Monday',
+                        value: 2314
+                    },
+                    {
+                        period: 'Tuesday',
+                        value: 1673
+                    },
+                    {
+                        period: 'Wednesday',
+                        value: 142
+                    },
+                    {
+                        period: 'Thursday',
+                        value: 3232
+                    },
+                    {
+                        period: 'Friday',
+                        value: 744
+                    },
+                    {
+                        period: 'Saturday',
+                        value: 1552
+                    },
+                    {
+                        period: 'Sunday',
+                        value: 124
+                    },
+                ]
             },
             {
-                period: 'Tuesday',
-                value: 1953
+                metric: 'Turnover',
+                serie_1: [
+                    {
+                        period: '0:00 - 4:00',
+                        value: 34
+                    },
+                    {
+                        period: '4:00 - 8:00',
+                        value: 53
+                    },
+                    {
+                        period: '8:00 - 12:00',
+                        value: 86
+                    },
+                    {
+                        period: '12:00 - 16:00',
+                        value: 102
+                    },
+                    {
+                        period: '16:00 - 20:00',
+                        value: 32
+                    },
+                    {
+                        period: '20:00 - 24:00',
+                        value: 12
+                    },
+                ],
+                serie_2: [
+                    {
+                        period: '0:00 - 4:00',
+                        value: 65
+                    },
+                    {
+                        period: '4:00 - 8:00',
+                        value: 54
+                    },
+                    {
+                        period: '8:00 - 12:00',
+                        value: 32
+                    },
+                    {
+                        period: '12:00 - 16:00',
+                        value: 75
+                    },
+                    {
+                        period: '16:00 - 20:00',
+                        value: 92
+                    },
+                    {
+                        period: '20:00 - 24:00',
+                        value: 73
+                    },
+                ]
             },
             {
-                period: 'Wednesday',
-                value: 2938
+                metric: 'Turnover',
+                serie_1: [
+                    {
+                        period: 'Monday',
+                        value: 5432
+                    },
+                    {
+                        period: 'Tuesday',
+                        value: 2351
+                    },
+                    {
+                        period: 'Wednesday',
+                        value: 9201
+                    },
+                    {
+                        period: 'Thursday',
+                        value: 5893
+                    },
+                    {
+                        period: 'Friday',
+                        value: 4631
+                    },
+                    {
+                        period: 'Saturday',
+                        value: 6832
+                    },
+                    {
+                        period: 'Sunday',
+                        value: 9001
+                    },
+                ],
+                serie_2: [
+                    {
+                        period: 'Monday',
+                        value: 4352
+                    },
+                    {
+                        period: 'Tuesday',
+                        value: 1235
+                    },
+                    {
+                        period: 'Wednesday',
+                        value: 6234
+                    },
+                    {
+                        period: 'Thursday',
+                        value: 6351
+                    },
+                    {
+                        period: 'Friday',
+                        value: 4911
+                    },
+                    {
+                        period: 'Saturday',
+                        value: 5671
+                    },
+                    {
+                        period: 'Sunday',
+                        value: 2222
+                    },
+                ]
             },
             {
-                period: 'Thursday',
-                value: 3111
-            },
-            {
-                period: 'Friday',
-                value: 2901
-            },
-            {
-                period: 'Saturday',
-                value: 1902
-            },
-            {
-                period: 'Sunday',
-                value: 4004
+                metric: 'Turnover',
+                serie_1: [
+                    {
+                        period: 'Monday',
+                        value: 3921
+                    },
+                    {
+                        period: 'Tuesday',
+                        value: 1953
+                    },
+                    {
+                        period: 'Wednesday',
+                        value: 2938
+                    },
+                    {
+                        period: 'Thursday',
+                        value: 3111
+                    },
+                    {
+                        period: 'Friday',
+                        value: 2901
+                    },
+                    {
+                        period: 'Saturday',
+                        value: 1902
+                    },
+                    {
+                        period: 'Sunday',
+                        value: 4004
+                    }
+                ],
+                serie_2: [
+                    {
+                        period: 'Monday',
+                        value: 2002
+                    },
+                    {
+                        period: 'Tuesday',
+                        value: 1853
+                    },
+                    {
+                        period: 'Wednesday',
+                        value: 3021
+                    },
+                    {
+                        period: 'Thursday',
+                        value: 4000
+                    },
+                    {
+                        period: 'Friday',
+                        value: 793
+                    },
+                    {
+                        period: 'Saturday',
+                        value: 2302
+                    },
+                    {
+                        period: 'Sunday',
+                        value: 1002
+                    },
+                ]
             }
-        ],
-        serie_2: [
-            {
-                period: 'Monday',
-                value: 2002
-            },
-            {
-                period: 'Tuesday',
-                value: 1853
-            },
-            {
-                period: 'Wednesday',
-                value: 3021
-            },
-            {
-                period: 'Thursday',
-                value: 4000
-            },
-            {
-                period: 'Friday',
-                value: 793
-            },
-            {
-                period: 'Saturday',
-                value: 2302
-            },
-            {
-                period: 'Sunday',
-                value: 1002
-            },
-        ]
-    }
-    ];
+        ];
         return res(ctx.json(resp));
     }),
 

@@ -1,50 +1,50 @@
 .badgeRateContainer {
-  background-color: var(--background-color);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
+    background-color: var(--background-color);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
 }
 
 .aspectsContainer,
 .overallContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
 }
 
 .aspectsOverallContainer {
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 
 }
 
 .spinner {
-  margin: 100px 259px;
+    margin: 100px 259px;
 }
 
 .qualityContainer {
-  text-align: center;
-}
-
-@media screen and (max-width: 670px) {
-  .qualityContainer {
-    width: 100vw;
     text-align: center;
-  }
 }
 
 @media screen and (max-width: 670px) {
-  .badgeRateContainer {
-    margin-right: 40px;
-  }
+    .qualityContainer {
+        width: 100vw;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 670px) {
+    .badgeRateContainer {
+        margin-right: 40px;
+    }
 }
 
 @media screen and (max-width: 650px) {
-  .aspectsOverallContainer {
-    flex-direction: column;
-    gap: 30px;
-  }
+    .aspectsOverallContainer {
+        flex-direction: column;
+        gap: 30px;
+    }
 }
