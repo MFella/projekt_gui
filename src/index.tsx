@@ -12,6 +12,7 @@ import "@blueprintjs/popover2/lib/css/blueprint-popover2.css";
 import "@blueprintjs/select/lib/css/blueprint-select.css";
 import {BrowserRouter} from "react-router-dom";
 import {worker} from "./mock/browser";
+
 worker.start()
 ReactDOM.render(
     <React.StrictMode>

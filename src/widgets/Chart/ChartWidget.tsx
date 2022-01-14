@@ -87,26 +87,26 @@ const ChartWidget = (props: ChartWidgetProps) => {
 
 
     return <WidgetCard title={t("widget.chart.title")}>
-            <ChartSettings updateChart={updateNewChart} data={data}/>
-            <div className="chart-header-container">
-                {loading ? <Spinner className={styles.spinner}/> : (
-                    type.value === 1 ?
-                        <ReactApexChart
-                            options={chartOptions}
-                            series={chartOptions.series}
-                            type={'line'}
-                            height={'500px'}
-                        /> : <ReactApexChart
-                            options={chartOptions}
-                            series={chartOptions.series}
-                            type={'bar'}
-                            height={'500px'}
-                        />
+        <ChartSettings updateChart={updateNewChart} data={data}/>
+        <div className="chart-header-container">
+            {loading ? <Spinner className={styles.spinner}/> : (
+                type.value === 1 ?
+                    <ReactApexChart
+                        options={chartOptions}
+                        series={chartOptions.series}
+                        type={'line'}
+                        height={'500px'}
+                    /> : <ReactApexChart
+                        options={chartOptions}
+                        series={chartOptions.series}
+                        type={'bar'}
+                        height={'500px'}
+                    />
 
-                )}
-            </div>
-            <div className="chart-area-container">
-            </div>
+            )}
+        </div>
+        <div className="chart-area-container">
+        </div>
 
     </WidgetCard>;
 

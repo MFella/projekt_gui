@@ -4,7 +4,6 @@ import OrdersWidget from "../../widgets/Orders/OrdersWidget";
 import QualityWidget from "../../widgets/Quality/QualityWidget";
 import ChartWidget from "../../widgets/Chart/ChartWidget";
 import styles from "./style.module.css";
-import {CachePolicies, useFetch} from "use-http";
 import AuthService from "../../service/AuthService";
 
 const DashboardScreen = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
-import {AnchorButton, H2, Intent, Spinner, Tag} from "@blueprintjs/core";
+import {H2, Intent, Spinner, Tag} from "@blueprintjs/core";
 import styles from "./style.module.css";
 import OrdersDetails from "./OrdersDetails";
 
@@ -17,7 +17,7 @@ const OrdersItem = (props: OrdersItemProps) => {
     return (
         <div className={styles.itemContainer}>
             <Tag round={true} large={true} minimal={true} style={{width: "150px", textAlign: "center"}}
-                 intent={props.intent} >{props.title}</Tag>
+                 intent={props.intent}>{props.title}</Tag>
             {props.isLoading ? <Spinner size={42}/> : <H2>{props.itemsNumber}</H2>}
             <OrdersDetails title={props.title} link={props.link}/>
         </div>

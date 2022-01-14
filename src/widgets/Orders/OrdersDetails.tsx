@@ -27,7 +27,7 @@ const OrdersDetails = (props: OrderDetailsProps) => {
         if (isOpen) load()
     }, [isOpen]);
 
-    const { t, i18n } = useTranslation();
+    const {t, i18n} = useTranslation();
 
     async function load() {
         const initialTodos = await get('')
@@ -41,7 +41,8 @@ const OrdersDetails = (props: OrderDetailsProps) => {
                 rightIcon="share"
                 text={t("widget.orders.showdetails")}
             />
-            <Dialog className={theme === "dark" ? "bp3-dark" : ""} icon="info-sign" title={t("widget.orders.details") + props.title}
+            <Dialog className={theme === "dark" ? "bp3-dark" : ""} icon="info-sign"
+                    title={t("widget.orders.details") + props.title}
                     isOpen={isOpen} onClose={handleClose}>
                 <div className={Classes.DIALOG_BODY}>
                     {loading ? <Spinner/> : (
