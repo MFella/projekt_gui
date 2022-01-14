@@ -30,14 +30,14 @@
   text-align: center;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 670px) {
   .qualityContainer {
     width: 100vw;
     text-align: center;
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 670px) {
   .badgeRateContainer {
     margin-right: 40px;
   }
