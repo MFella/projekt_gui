@@ -9,19 +9,17 @@ import AuthService from "../../service/AuthService";
 
 const DashboardScreen = () => {
     const [currenUser, setCurrentUser] = useState(AuthService.getCurrentUser())
-    const ordersFetch = useFetch('/orders/' + currenUser, {cachePolicy: CachePolicies.NO_CACHE}, [currenUser])
-
     return (
         <>
             <Topbar isAuthorized={true} onUserChange={(user) => setCurrentUser(user)}/>
             <div className={styles.container}>
                 <OrdersWidget
                     currentUser={currenUser}
-                    isLoading={ordersFetch.loading}
-                    data={ordersFetch.data}
                 />
-                <QualityWidget/>
-                <ChartWidget/>
+                <QualityWidget
+                    currentUser={currenUser}/>
+                <ChartWidget
+                    currentUser={currenUser}/>
             </div>
 
         </>

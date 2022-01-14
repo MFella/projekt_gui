@@ -3,6 +3,7 @@ import {Dialog} from "@blueprintjs/core/lib/esnext";
 import {AnchorButton, Card, Classes, H4, Label, Spinner} from "@blueprintjs/core";
 import {useTheme} from "../../ThemeContext";
 import {CachePolicies, useFetch} from "use-http";
+import {useTranslation} from "react-i18next";
 
 
 export interface OrderDetailsProps {
@@ -24,7 +25,9 @@ const OrdersDetails = (props: OrderDetailsProps) => {
 
     useEffect(() => {
         if (isOpen) load()
-    }, [isOpen])
+    }, [isOpen]);
+
+    const { t, i18n } = useTranslation();
 
     async function load() {
         const initialTodos = await get('')
@@ -36,18 +39,18 @@ const OrdersDetails = (props: OrderDetailsProps) => {
             <AnchorButton
                 onClick={handleButtonClick}
                 rightIcon="share"
-                text={"Zobacz szczegóły"}
+                text={t("widget.orders.showdetails")}
             />
-            <Dialog className={theme === "dark" ? "bp3-dark" : ""} icon="info-sign" title={"Szczegóły: " + props.title}
+            <Dialog className={theme === "dark" ? "bp3-dark" : ""} icon="info-sign" title={t("widget.orders.details") + props.title}
                     isOpen={isOpen} onClose={handleClose}>
                 <div className={Classes.DIALOG_BODY}>
                     {loading ? <Spinner/> : (
                         data.map((v: any, k: React.Key | null | undefined) =>
                             <Card key={k}>
-                                <H4>Zamówienie: {v.id}</H4>
-                                <Label>Opis: {v.description}</Label>
-                                <Label>Data: {v.date}</Label>
-                                <Label>Koszt: {v.total} PLN</Label>
+                                <H4>{t("widget.orders.order") + v.id}</H4>
+                                <Label>{t("widget.orders.description") + v.description}</Label>
+                                <Label>{t("widget.orders.date") + v.date}</Label>
+                                <Label>{t("widget.orders.total") + v.total} PLN</Label>
                             </Card>
                         )
                     )}

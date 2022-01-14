@@ -21,10 +21,12 @@ import {
   IOption,
   renderOption
 } from "./options";
+import {useTranslation} from "react-i18next";
 
 const ChartSettings = (props: any) => {
   const { theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const { t, i18n } = useTranslation();
   const handleButtonClick = useCallback(() => setIsOpen(!isOpen), []);
 
   const MetricSelect = Select.ofType<IOption>();
@@ -72,69 +74,72 @@ const ChartSettings = (props: any) => {
       <Dialog
         className={theme === "dark" ? "bp3-dark" : ""}
         icon="info-sign"
-        title={"Ustawienia"}
+        title={t("settings")}
         isOpen={isOpen}
         onClose={handleClose}
       >
         <div className={Classes.DIALOG_BODY}>
           <Card>
             <Label style={optionRowStyle}>
-              <strong>Metric</strong>
+              <strong>{t("widget.chart.metric")}</strong>
               <div>
                 <MetricSelect
                   items={CHART_METRICS}
+                  filterable={false}
                   itemPredicate={filterOption}
                   itemRenderer={renderOption}
-                  noResults={<MenuItem disabled={true} text="No results." />}
+                  noResults={<MenuItem disabled={true} text={t("widget.chart.noresult")} />}
                   onItemSelect={handleMetricClick}
                 >
                   <Button
-                    text={'wybrana opcja'}
+                    text={metric.heading}
                     rightIcon="double-caret-vertical"
                   />
                 </MetricSelect>
               </div>
             </Label>
             <Label style={optionRowStyle}>
-              <strong>Type of chart</strong>
+              <strong>{t("widget.chart.type")}</strong>
               <div>
                 <ChartTypeSelect
                   items={CHART_TYPE_OF_CHART}
+                  filterable={false}
                   itemPredicate={filterOption}
                   itemRenderer={renderOption}
-                  noResults={<MenuItem disabled={true} text="No results." />}
+                  noResults={<MenuItem disabled={true} text={t("widget.chart.noresult")}/>}
                   onItemSelect={handleTypeClick}
                 >
                   <Button
-                    text={"wybrana opcja"}
+                    text={type.heading}
                     rightIcon="double-caret-vertical"
                   />
                 </ChartTypeSelect>
               </div>
             </Label>
             <Label style={optionRowStyle}>
-              <strong>Range</strong>
+              <strong>{t("widget.chart.range")}</strong>
               <div>
                 <RangeSelect
                   items={CHART_RANGE}
+                  filterable={false}
                   itemPredicate={filterOption}
                   itemRenderer={renderOption}
-                  noResults={<MenuItem disabled={true} text="No results." />}
+                  noResults={<MenuItem disabled={true} text={t("widget.chart.noresult")} />}
                   onItemSelect={handleRangeClick}
                 >
                   <Button
-                    text={"wybrana opcja"}
+                    text={range.heading}
                     rightIcon="double-caret-vertical"
                   />
                 </RangeSelect>
               </div>
             </Label>
             <Label style={optionRowStyle}>
-              <strong>Additional data serie</strong>
+              <strong>{t("widget.chart.additional")}</strong>
               <div>
                 <Switch
                   checked={additionalSerie}
-                  label={additionalSerie ? "On" : "Off"}
+                  label={additionalSerie ? t("On") : t("Off")}
                   onChange={() => setAdditionalSerie(!additionalSerie)}
                 />
               </div>

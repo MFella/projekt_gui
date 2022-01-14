@@ -47,24 +47,24 @@ const Topbar = (props: TopbarProps) => {
             <Menu>
                 <Switch
                     checked={theme === "dark"}
-                    label="Tryb ciemny"
+                    label={t("navbar.darkmode")}
                     onChange={changeColorTheme}
                 />
-                <MenuItem text="Zmień język">
+                <MenuItem text={t("navbar.language")}>
                     <MenuItem
                         icon={getLanguage() === "pl" ? "small-tick" : false}
-                        text="Polski"
+                        text={t("polish")}
                         onClick={() => changeLanguageHandler("pl")}
                     />
                     <MenuItem
                         icon={getLanguage() === "en" ? "small-tick" : false}
-                        text="Angielski"
+                        text={t("english")}
                         onClick={() => changeLanguageHandler("en")}
                     />
                 </MenuItem>
                 {props.isAuthorized && <>
                     <MenuDivider/>
-                    <Button text="Wyloguj" fill={true} minimal={true} onClick={logout}/>
+                    <Button text={t("navbar.logout")} fill={true} minimal={true} onClick={logout}/>
                 </>}
             </Menu>
         </div>

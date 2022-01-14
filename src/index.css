@@ -17,4 +17,22 @@ body {
 .body::-webkit-scrollbar {
     display: none;
 }
+.apexcharts-text {
+    fill: var(--text-color) !important;
+}
+.apexcharts-title-text {
+    fill: var(--text-color) !important;
+}
+.apexcharts-xaxistooltip-text {
+    fill: var(--text-color) !important;
+}
+.apexcharts-tooltip-text {
+    fill: #000;
+    color: #000;
+}
+
+.apexcharts-tooltip-title {
+    fill: #000;
+    color: #000;
+}
 

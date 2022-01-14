@@ -2,6 +2,8 @@ import { HotkeysProvider, Intent, Tag } from '@blueprintjs/core';
 import { Cell, Column, Table, Table2 } from "@blueprintjs/table";
 import React, { useState } from 'react';
 import styles from "./style.module.css";
+import {useTranslation} from "react-i18next";
+
 
 export interface LowestAspects {
     service: number,
@@ -25,7 +27,7 @@ export interface QualityDetailData {
 
 
 const QualityDetails = (props: QualityDetailData) => {
-
+    const {t, i18n} = useTranslation();
     const tagsData = [
         'Weak',
         'Average',
@@ -41,8 +43,8 @@ const QualityDetails = (props: QualityDetailData) => {
     }
 
     return (
-        <>
-        <h3>Kategoria sprzedaży</h3>
+        <div className={styles.qualityContainer} >
+        <h3>{t("widget.quality.category")}</h3>
             <div className={styles.badgeRateContainer}>
                 {/* {(tagsData.map((tag: any, k: React.Key | null | undefined) => {
             <Tag round={true} large={true} minimal={true}
@@ -54,52 +56,52 @@ const QualityDetails = (props: QualityDetailData) => {
             style={tagStyle}>{'Weak'}</Tag>
                         <Tag round={true} large={false} minimal={true}
             intent={props.category === 'Average' ? Intent.SUCCESS : Intent.NONE} 
-            style={tagStyle}>{'Average'}</Tag>
+            style={tagStyle}>{t('Weak')}</Tag>
                         <Tag round={true} large={false} minimal={true}
             intent={props.category === 'Good' ? Intent.SUCCESS : Intent.NONE} 
-            style={tagStyle}>{'Good'}</Tag>
+            style={tagStyle}>{t('Good')}</Tag>
                         <Tag round={true} large={false} minimal={true}
             intent={props.category === 'Very good' ? Intent.SUCCESS : Intent.NONE} 
-            style={tagStyle}>{'Very good'}</Tag>
+            style={tagStyle}>{t('Verygood')}</Tag>
                         <Tag round={true} large={false} minimal={true}
             intent={props.category === 'Wonderful' ? Intent.SUCCESS : Intent.NONE} 
-            style={tagStyle}>{'Wonderful'}</Tag>
+            style={tagStyle}>{t('Wonderful')}</Tag>
             </div>
             <div className={styles.aspectsOverallContainer}>
                 <div className={styles.aspectsContainer}>
-                <h3>Najniżej oceniane aspekty</h3>  
-                    <table style={{width: '100%'}} className=' bp3-html-table bp3-html-table-striped'>
+                <h3>{t("widget.quality.lowest")}</h3>
+                    <table style={{ marginRight: "20px"}} className=' bp3-html-table bp3-html-table-striped'>
                         <thead>
                             <tr>
-                                <th>Aspekt</th>
-                                <th>Ocena</th>
+                                <th>{t("widget.quality.aspect")}</th>
+                                <th>{t("widget.quality.rate")}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Obsługa klienta</td>
+                                <td>{t("widget.quality.customerservice")}</td>
                                 <td>{props.lowestAspects?.service}/100</td>
                             </tr>
                             <tr>
-                                <td>Koszt dostawy</td>
+                                <td>{t("widget.quality.shippingprice")}</td>
                                 <td>{props.lowestAspects?.deliveryCost}/100</td>
                             </tr>
                             <tr>
-                                <td>Czas dostawy</td>
+                                <td>{t("widget.quality.shippingtime")}</td>
                                 <td>{props.lowestAspects?.timeOfDelivery}/100</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div className={styles.overallContainer}>
-                    <h3>Ogólna ocena jakości</h3>
+                    <h3>{t("widget.quality.total")}</h3>
                     <h2>{props.overallRatio?.rate}</h2>
-                    <p>Brakuje <strong>{props.overallRatio?.leftToNext}</strong> punktów do kategori: </p>
+                    <p>{t("widget.quality.pointsleft")}<strong>{props.overallRatio?.leftToNext}</strong>{t("widget.quality.left")}</p>
                     <Tag round={true} large={false} minimal={true}>{props.category}</Tag>
                     
                 </div>
             </div>
-        </>
+        </div>
     )
 };
 

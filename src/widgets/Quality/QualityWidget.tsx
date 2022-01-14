@@ -4,8 +4,13 @@ import { useTranslation } from "react-i18next";
 import useFetch, { CachePolicies } from "use-http";
 import WidgetCard from "../../components/WidgetCard/WidgetCard";
 import QualityDetails from "./QualityDetails";
+import styles from "./style.module.css";
 
-const QualityWidget = () => {
+export interface QualityWidgetProps {
+  currentUser: string
+}
+
+const QualityWidget = (props: QualityWidgetProps) => {
   const { t, i18n } = useTranslation();
   const [data, setData] = useState({category: '', lowestAspects: null, overallRatio: null});
 
@@ -13,7 +18,7 @@ const QualityWidget = () => {
     get,
     response,
     loading
-  } = useFetch('/quality/', {cachePolicy: CachePolicies.NO_CACHE}, [])
+  } = useFetch('/quality/', {cachePolicy: CachePolicies.NO_CACHE}, [props.currentUser])
 
   useEffect(() => {
       load()
@@ -23,8 +28,8 @@ const QualityWidget = () => {
       const qualityData = await get('')
       if (response.ok) setData(qualityData)
   }
-  return <WidgetCard title={t("widget.quality.title")}> 
-  {loading ? <Spinner /> : (
+  return <WidgetCard title={t("widget.quality.title")}>
+  {loading ? <Spinner className={styles.spinner}/> : (
     <QualityDetails category={data.category} lowestAspects={data.lowestAspects} overallRatio={data.overallRatio} />
   )}
   </WidgetCard>;
