@@ -89,7 +89,7 @@ const ChartWidget = (props: ChartWidgetProps) => {
     return <WidgetCard title={t("widget.chart.title")}>
             <ChartSettings updateChart={updateNewChart} data={data}/>
             <div className="chart-header-container">
-                {loading ? <Spinner/> : (
+                {loading ? <Spinner className={styles.spinner}/> : (
                     type.value === 1 ?
                         <ReactApexChart
                             options={chartOptions}

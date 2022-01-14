@@ -9,7 +9,7 @@ function sleep(milliseconds) {
 }
 export const handlers = [
     rest.post('/login', (req, res, ctx) => {
-        sleep(1000);
+        sleep(400);
         if (req.body.username === "admin" && req.body.password === "admin") {
             const users = ["UserA", "UserB", "UserC"]
             const token = "AuthToken"
@@ -20,22 +20,22 @@ export const handlers = [
     }),
 
     rest.get('/orders/UserA', (req, res, ctx) => {
-        sleep(1000);
+        sleep(400);
         return res(ctx.json({unpaid: 50, unsent: 35, refund: 12}))
     }),
 
     rest.get('/orders/UserB', (req, res, ctx) => {
-        sleep(1000);
+        sleep(400);
         return res(ctx.json({unpaid: 55, unsent: 45, refund: 22}));
     }),
 
     rest.get('/orders/UserC', (req, res, ctx) => {
-        sleep(1000);
+        sleep(400);
         return res(ctx.json({unpaid: 10, unsent: 12, refund: 5}));
     }),
 
     rest.get('/orders/details/*', (req, res, ctx) => {
-        sleep(1000)
+        sleep(400)
         const resp = [{
             id: 1,
             description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
@@ -72,7 +72,7 @@ export const handlers = [
     }),
     
     rest.get('/orders/chart/', (req, res, ctx) => {
-        sleep(1000);
+        sleep(400);
         const resp = [
             {
                 metric: 'Selt items',
@@ -197,7 +197,7 @@ export const handlers = [
                 serie_1: [                
                 {
                     period: 'Monday',
-                    value: 6001
+                    value: 4001
                 },
                 {
                     period: 'Tuesday',
@@ -441,7 +441,7 @@ export const handlers = [
     }),
 
     rest.get('/quality/', (req, res, ctx) => {
-        sleep(1000);
+        sleep(400);
         const resp = {
             category: 'Average',
             lowestAspects: {
