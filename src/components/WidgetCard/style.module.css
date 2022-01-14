@@ -1,23 +1,24 @@
 .title {
-    margin-top: 0;
-    transition: color 500ms linear;
+  margin-top: 0;
+  transition: color 500ms linear;
 }
 
 .container {
-    margin: 40px auto 0 auto;
-    width: 700px;
+  margin: 40px auto 0 auto;
+  width: 700px;
 }
 
 @media screen and (max-width: 700px) {
-    .container {
-        width: 100vw;
-    }
+  .container {
+    width: 100vw;
+  }
 }
 
 .card {
-    background-color: var(--background-card) !important;
-    transition: background-color 500ms linear;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
+  background-color: var(--background-card) !important;
+  transition: background-color 500ms linear;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
