@@ -1,20 +1,24 @@
 import { AnchorButton, Spinner } from "@blueprintjs/core";
-import ApexCharts from "apexcharts";
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import useFetch, { CachePolicies } from "use-http";
 import WidgetCard from "../../components/WidgetCard/WidgetCard";
 import ChartSettings from "./ChartSettings";
+import { CHART_METRICS, CHART_RANGE, CHART_TYPE_OF_CHART, IOption } from "./options";
+import ReactApexChart from "react-apexcharts";
 
 const ChartWidget = () => {
 
   const [data, setData] = useState([]);
+  const [metric, setMetric] = useState<IOption>(CHART_METRICS[0]);
+  const [type, setType] = useState<IOption>(CHART_TYPE_OF_CHART[1]);
+  const [range, setRange] = useState<IOption>(CHART_RANGE[0]);
 
   const {
     get,
     response,
     loading
-} = useFetch('/orders/chart/today' , {cachePolicy: CachePolicies.NO_CACHE}, [])
+} = useFetch('/orders/chart/' , {cachePolicy: CachePolicies.NO_CACHE}, [])
 
 useEffect(() => {
     load();
@@ -22,35 +26,79 @@ useEffect(() => {
 
 async function load() {
     const chartData = await get('')
-    if (response.ok) setData(chartData)
-    console.log('chartData', chartData);
+    if (response.ok) {
+      setData(chartData);
+      const chartOptions = getOptions(metric, type, range, false, chartData);
+      setChartOptions(chartOptions);
+    }
 }
 
-  const options = {
-    chart: {
-      type: 'line'
-    },
-    series: [{
-      name: 'sales',
-      data: [30,40,35,50,49,60,70,91,125]
-    }],
-    xaxis: {
-      categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
-    }
+  const [chartOptions, setChartOptions] = useState({series: []});
+  
+
+  const getOptions = (metric: IOption, type: IOption, range: IOption, additionalData: boolean, data: any) => {
+    const dataToDisplay = data.filter((entity: any) => {
+      return entity.metric === metric.heading
+    });
+
+    // hardcoded ;/
+    const singleSerie = [{
+      name: range.heading,
+      data: [...(dataToDisplay[range.value].serie_1).map((measure: IOption) => measure.value)]
+    }];
+
+    const doubleSerie = [{
+      name: range.heading,
+      data: [...(dataToDisplay[range.value].serie_1).map((measure: IOption) => measure.value)]
+    }, {
+      name: '(Additional)' + range.heading,
+      data: [...(dataToDisplay[range.value].serie_2).map((measure: IOption) => measure.value)]
+    }];
+
+    return {
+      title: {
+        text: metric.heading
+      },
+      chart: {
+        type: type.value === 0 ? 'bar' : 'line',
+      },
+      xaxis: {
+        categories: [...(dataToDisplay[range.value].serie_1).map((measure: any) => measure.period)]
+      },
+      series: additionalData ? doubleSerie : singleSerie
+    } as any;
   }
-
-  const chart = new ApexCharts(document.querySelector("#chart"), options);
-
-  chart.render();
 
   const { t, i18n } = useTranslation();
 
+  const updateNewChart = useCallback((metric: IOption, type: IOption, range: IOption, additionalSerie: boolean, data: any) => {
+
+    const pipedData = getOptions(metric, type, range, additionalSerie, data);
+  
+    setChartOptions(pipedData);
+    setType(type);
+    setMetric(metric);
+    setRange(range);
+  }, [type, chartOptions, metric])
+
 
   return <WidgetCard title={t("widget.chart.title")}>
-    <ChartSettings />
+    <ChartSettings updateChart={updateNewChart} data={data} />
   <div className="chart-header-container">
   {loading ? <Spinner/> : (
-    <div id="chart"></div>
+    type.value === 1 ? 
+      <ReactApexChart 
+      options={chartOptions} 
+      series={chartOptions.series} 
+      type={'line'}
+      height={'500px'}
+    /> :         <ReactApexChart 
+    options={chartOptions} 
+    series={chartOptions.series} 
+    type={'bar'}
+    height={'500px'}
+  />
+    
   )}
   </div>
     <div className="chart-area-container">

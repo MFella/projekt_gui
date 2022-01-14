@@ -21,19 +21,17 @@ import {
   IOption,
   renderOption
 } from "./options";
-import useFetch, { CachePolicies } from "use-http";
 
 const ChartSettings = (props: any) => {
   const { theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const handleButtonClick = useCallback(() => setIsOpen(!isOpen), []);
-  const handleClose = useCallback(() => setIsOpen(false), []);
 
   const MetricSelect = Select.ofType<IOption>();
   const ChartTypeSelect = Select.ofType<IOption>();
   const RangeSelect = Select.ofType<IOption>();
   const [metric, setMetric] = useState<IOption>(CHART_METRICS[0]);
-  const [type, setType] = useState<IOption>(CHART_TYPE_OF_CHART[0]);
+  const [type, setType] = useState<IOption>(CHART_TYPE_OF_CHART[1]);
   const [range, setRange] = useState<IOption>(CHART_RANGE[0]);
   const [additionalSerie, setAdditionalSerie] = useState<boolean>(false);
 
@@ -46,6 +44,25 @@ const ChartSettings = (props: any) => {
     justifyContent: "space-between",
     alignItems: "center"
   } as React.CSSProperties;
+
+  const handleMetricClick = (item: IOption) => {
+    setMetric(item);
+  }
+
+  const handleTypeClick = (type: IOption) => {
+    setType(type);
+  }
+
+  const handleRangeClick = (range: IOption) => {
+    setRange(range);
+  }
+
+  const updateChart = () => {
+    setIsOpen(false);
+    props.updateChart(metric, type, range, additionalSerie, props.data);
+  }
+
+  const handleClose = useCallback(updateChart, [metric, type, range, additionalSerie, props.data]);
 
   return (
     <>
@@ -69,10 +86,10 @@ const ChartSettings = (props: any) => {
                   itemPredicate={filterOption}
                   itemRenderer={renderOption}
                   noResults={<MenuItem disabled={true} text="No results." />}
-                  onItemSelect={setMetric}
+                  onItemSelect={handleMetricClick}
                 >
                   <Button
-                    text={"wybrana opcja"}
+                    text={'wybrana opcja'}
                     rightIcon="double-caret-vertical"
                   />
                 </MetricSelect>
@@ -86,7 +103,7 @@ const ChartSettings = (props: any) => {
                   itemPredicate={filterOption}
                   itemRenderer={renderOption}
                   noResults={<MenuItem disabled={true} text="No results." />}
-                  onItemSelect={setType}
+                  onItemSelect={handleTypeClick}
                 >
                   <Button
                     text={"wybrana opcja"}
@@ -98,18 +115,18 @@ const ChartSettings = (props: any) => {
             <Label style={optionRowStyle}>
               <strong>Range</strong>
               <div>
-                <MetricSelect
+                <RangeSelect
                   items={CHART_RANGE}
                   itemPredicate={filterOption}
                   itemRenderer={renderOption}
                   noResults={<MenuItem disabled={true} text="No results." />}
-                  onItemSelect={setRange}
+                  onItemSelect={handleRangeClick}
                 >
                   <Button
                     text={"wybrana opcja"}
                     rightIcon="double-caret-vertical"
                   />
-                </MetricSelect>
+                </RangeSelect>
               </div>
             </Label>
             <Label style={optionRowStyle}>
